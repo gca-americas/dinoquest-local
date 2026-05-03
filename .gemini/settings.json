@@ -5,6 +5,10 @@
       "authProviderType": "google_credentials",
       "oauth": {
         "scopes": ["https://www.googleapis.com/auth/cloud-platform"]
+      },
+      "timeout": 30000,
+      "headers": {
+        "x-goog-user-project": "gca-america-virtual-ta-test"
       }
     },
     "google-cloud-logging": {
@@ -12,6 +16,10 @@
       "authProviderType": "google_credentials",
       "oauth": {
         "scopes": ["https://www.googleapis.com/auth/cloud-platform"]
+      },
+      "timeout": 30000,
+      "headers": {
+        "x-goog-user-project": "gca-america-virtual-ta-test"
       }
     },
     "google-cloud-monitoring": {
@@ -19,6 +27,10 @@
       "authProviderType": "google_credentials",
       "oauth": {
         "scopes": ["https://www.googleapis.com/auth/cloud-platform"]
+      },
+      "timeout": 30000,
+      "headers": {
+        "x-goog-user-project": "gca-america-virtual-ta-test"
       }
     },
     "google-cloud-run": {
@@ -26,6 +38,10 @@
       "authProviderType": "google_credentials",
       "oauth": {
         "scopes": ["https://www.googleapis.com/auth/cloud-platform"]
+      },
+      "timeout": 30000,
+      "headers": {
+        "x-goog-user-project": "gca-america-virtual-ta-test"
       }
     },
     "google-cloud-sql": {
@@ -33,6 +49,10 @@
       "authProviderType": "google_credentials",
       "oauth": {
         "scopes": ["https://www.googleapis.com/auth/cloud-platform"]
+      },
+      "timeout": 30000,
+      "headers": {
+        "x-goog-user-project": "gca-america-virtual-ta-test"
       }
     },
     "google-cloud-trace": {
@@ -40,6 +60,10 @@
       "authProviderType": "google_credentials",
       "oauth": {
         "scopes": ["https://www.googleapis.com/auth/cloud-platform"]
+      },
+      "timeout": 30000,
+      "headers": {
+        "x-goog-user-project": "gca-america-virtual-ta-test"
       }
     },
     "google-error-reporting": {
@@ -47,6 +71,10 @@
       "authProviderType": "google_credentials",
       "oauth": {
         "scopes": ["https://www.googleapis.com/auth/cloud-platform"]
+      },
+      "timeout": 30000,
+      "headers": {
+        "x-goog-user-project": "gca-america-virtual-ta-test"
       }
     },
     "google-firestore": {
@@ -54,6 +82,10 @@
       "authProviderType": "google_credentials",
       "oauth": {
         "scopes": ["https://www.googleapis.com/auth/cloud-platform"]
+      },
+      "timeout": 30000,
+      "headers": {
+        "x-goog-user-project": "gca-america-virtual-ta-test"
       }
     },
     "google-memorystore-redis": {
@@ -61,6 +93,10 @@
       "authProviderType": "google_credentials",
       "oauth": {
         "scopes": ["https://www.googleapis.com/auth/cloud-platform"]
+      },
+      "timeout": 30000,
+      "headers": {
+        "x-goog-user-project": "gca-america-virtual-ta-test"
       }
     },
     "google-resource-manager": {
@@ -68,6 +104,10 @@
       "authProviderType": "google_credentials",
       "oauth": {
         "scopes": ["https://www.googleapis.com/auth/cloud-platform"]
+      },
+      "timeout": 30000,
+      "headers": {
+        "x-goog-user-project": "gca-america-virtual-ta-test"
       }
     }
   }
