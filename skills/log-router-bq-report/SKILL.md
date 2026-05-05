@@ -227,7 +227,7 @@ SQL:
     COUNTIF(httpRequest.status >= 400 AND httpRequest.status < 500) AS client_errors,
     ROUND(AVG(httpRequest.latency * 1000), 0) AS avg_latency_ms
   FROM `<PROJECT_ID>.<BQ_DATASET>.<TABLE_NAME>`
-  WHERE timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 60 MINUTE)
+  WHERE timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 24 HOUR)
   GROUP BY minute
   ORDER BY minute DESC
   LIMIT 30
@@ -245,7 +245,7 @@ SQL:
     severity,
     COUNT(*) AS occurrences
   FROM `<PROJECT_ID>.<BQ_DATASET>.<TABLE_NAME>`
-  WHERE timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 60 MINUTE)
+  WHERE timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 24 HOUR)
     AND severity IN ('ERROR', 'CRITICAL', 'ALERT', 'EMERGENCY')
   GROUP BY error_message, severity
   ORDER BY occurrences DESC
@@ -264,7 +264,7 @@ Project:    <PROJECT_ID>
 Dataset:    <BQ_DATASET>
 Table:      <TABLE_NAME>
 Report Time: <ISO-8601 timestamp>
-Window:     Last 60 minutes
+Window:     Last 24 hours
 
 --- Traffic Summary ---
 [Table: minute | request_count | server_errors | client_errors | avg_latency_ms]
@@ -596,7 +596,7 @@ Chart.js and Google Fonts are loaded from CDN).
 <main>
 
   <!-- ══ SECTION 1: TRAFFIC ══ -->
-  <div class="section-title">🌐 Traffic Overview <span class="pill">LAST 60 MIN</span></div>
+  <div class="section-title">🌐 Traffic Overview <span class="pill">LAST 24 HOURS</span></div>
 
   <div class="traffic-header">
     <div class="traffic-kpi"><div class="kv">/* TOTAL_REQUESTS */</div><div class="kl">Total Requests</div></div>
