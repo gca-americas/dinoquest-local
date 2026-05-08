@@ -416,84 +416,96 @@ Chart.js and Google Fonts are loaded from CDN).
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>🦕 DinoQuest2 Insights</title>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet"/>
+<title>DinoQuest Insights</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
   :root {
-    --green:#16a34a; --green-light:#f0fdf4; --green-dark:#166534;
-    --yellow:#facc15; --yellow-dark:#eab308; --orange:#f97316;
-    --red:#ef4444; --blue:#2563eb; --purple:#a855f7; --pink:#ec4899;
-    --bg:#fdfcf0; --card:#ffffff; --shadow:0 8px 32px rgba(0,0,0,.12);
+    --green:#15803d; --green-light:#f0fdf4; --green-dark:#14532d;
+    --yellow:#d97706; --yellow-dark:#b45309; --orange:#c2410c;
+    --red:#b91c1c; --blue:#1e40af; --purple:#7c3aed; --pink:#be185d;
+    --bg:#fefce8; --card:#fffbeb; --ink:#292524; --muted:#78716c;
+    --rule:#e7e5e4;
+    --shadow:0 4px 16px rgba(20,83,45,.10);
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  body{background:var(--bg);font-family:'Nunito',sans-serif;overflow-x:hidden;}
+  body{background:var(--bg);font-family:'Nunito',sans-serif;color:var(--ink);overflow-x:hidden;}
 
-  /* ── floating dino emojis background ── */
-  .dino-bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
-  .dino-bg span{position:absolute;font-size:2.5rem;opacity:.08;animation:floatUp linear infinite;}
-  @keyframes floatUp{0%{transform:translateY(110vh) rotate(0deg);}100%{transform:translateY(-10vh) rotate(360deg);}}
-
-  /* ── hero header ── */
+  /* ── editorial header ── */
   header{
-    position:relative;z-index:1;text-align:center;padding:3rem 1rem 2rem;
-    background:linear-gradient(135deg,#166534 0%,#16a34a 50%,#22c55e 100%);
-    border-bottom:6px solid #facc15;overflow:hidden;
+    position:relative;z-index:1;text-align:center;padding:3.5rem 1rem 2.5rem;
+    background:linear-gradient(180deg,#14532d 0%,#166534 100%);
+    border-bottom:1px solid var(--yellow-dark);
   }
   header::before{
     content:'';position:absolute;inset:0;
-    background:radial-gradient(circle at 20% 50%,rgba(250,204,21,.15) 0%,transparent 60%),
-               radial-gradient(circle at 80% 50%,rgba(34,197,94,.2) 0%,transparent 60%);
+    background:radial-gradient(circle at 50% 0%,rgba(217,119,6,.10) 0%,transparent 60%);
+  }
+  .header-eyebrow{
+    position:relative;z-index:1;color:#fde68a;font-family:'Playfair Display',serif;
+    font-style:italic;font-weight:500;font-size:.9rem;letter-spacing:.28em;
+    text-transform:uppercase;opacity:.9;margin-bottom:.9rem;
+  }
+  .header-eyebrow::before,.header-eyebrow::after{
+    content:'';display:inline-block;width:2.4rem;height:1px;background:#fde68a;
+    vertical-align:middle;margin:0 .9rem;opacity:.55;
   }
   .header-title{
-    font-family:'Fredoka One',cursive;font-size:clamp(2.5rem,6vw,4.5rem);
-    color:#fff;letter-spacing:-.02em;text-shadow:4px 4px 0 #166534;
-    animation:titleBounce .8s cubic-bezier(.36,.07,.19,.97) both;
+    position:relative;z-index:1;font-family:'Playfair Display',serif;font-weight:700;
+    font-size:clamp(2.2rem,4.8vw,3.6rem);color:#fefce8;
+    letter-spacing:.005em;line-height:1.1;
+    animation:fadeUp .7s ease-out both;
   }
-  @keyframes titleBounce{0%{transform:scale(0) rotate(-10deg);}60%{transform:scale(1.15) rotate(3deg);}100%{transform:scale(1) rotate(0deg);}}
-  .header-sub{color:#dcfce7;font-size:1.1rem;font-weight:700;margin-top:.5rem;opacity:.9;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+  .header-rule{
+    position:relative;z-index:1;width:64px;height:2px;margin:1rem auto 0;
+    background:var(--yellow);opacity:.85;
+  }
+  .header-sub{
+    position:relative;z-index:1;color:#dcfce7;font-family:'Playfair Display',serif;
+    font-style:italic;font-size:1rem;font-weight:500;margin-top:.9rem;opacity:.85;
+  }
   .header-badge{
-    display:inline-block;background:#facc15;color:#713f12;
-    font-weight:900;font-size:.85rem;padding:.3rem .9rem;border-radius:9999px;
-    margin-top:1rem;border:3px solid #eab308;letter-spacing:.05em;
-    animation:pulse 2s ease-in-out infinite;
+    position:relative;z-index:1;display:inline-block;background:transparent;color:#fde68a;
+    font-family:'Nunito',sans-serif;font-weight:700;font-size:.72rem;
+    padding:.4rem 1rem;border-radius:9999px;margin-top:1.4rem;
+    border:1px solid rgba(253,230,138,.45);letter-spacing:.18em;text-transform:uppercase;
   }
-  @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.06);}}
 
   /* ── main grid ── */
-  main{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:2rem 1rem 4rem;}
+  main{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:2.5rem 1rem 4rem;}
   .section-title{
-    font-family:'Fredoka One',cursive;font-size:1.8rem;color:var(--green-dark);
-    margin:2.5rem 0 1rem;display:flex;align-items:center;gap:.5rem;
+    font-family:'Playfair Display',serif;font-weight:700;font-size:1.55rem;
+    color:var(--green-dark);margin:2.75rem 0 1.25rem;
+    display:flex;align-items:center;gap:.75rem;
+    border-bottom:1px solid var(--rule);padding-bottom:.6rem;
   }
   .section-title .pill{
-    font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:900;
-    background:var(--green);color:#fff;padding:.2rem .7rem;
-    border-radius:9999px;letter-spacing:.08em;
+    font-family:'Nunito',sans-serif;font-size:.68rem;font-weight:700;
+    background:transparent;color:var(--yellow-dark);padding:.2rem .65rem;
+    border-radius:9999px;letter-spacing:.18em;text-transform:uppercase;
+    border:1px solid var(--yellow-dark);
   }
 
   /* ── cards ── */
   .card{
-    background:var(--card);border-radius:1.5rem;
-    border:3px solid #e5e7eb;box-shadow:var(--shadow);
+    background:var(--card);border-radius:.5rem;
+    border:1px solid var(--rule);box-shadow:var(--shadow);
     padding:1.5rem;transition:transform .2s,box-shadow .2s;
     animation:cardIn .5s ease both;
   }
-  .card:hover{transform:translateY(-4px) rotate(.3deg);box-shadow:0 16px 48px rgba(0,0,0,.18);}
-  @keyframes cardIn{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+  .card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(20,83,45,.14);}
+  @keyframes cardIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
   .cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;margin-bottom:1.5rem;}
 
   /* ── stat bubble ── */
   .stat-bubble{text-align:center;}
   .stat-bubble .value{
-    font-family:'Fredoka One',cursive;font-size:2.8rem;line-height:1;
-    background:linear-gradient(135deg,var(--green),var(--yellow-dark));
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-    animation:countUp .8s ease both;
+    font-family:'Playfair Display',serif;font-weight:700;
+    font-size:2.6rem;line-height:1;color:var(--green-dark);
   }
-  @keyframes countUp{from{opacity:0;transform:scale(.5);}to{opacity:1;transform:scale(1);}}
-  .stat-bubble .label{font-size:.8rem;font-weight:900;color:#6b7280;letter-spacing:.1em;text-transform:uppercase;margin-top:.3rem;}
-  .stat-bubble .sub{font-size:.75rem;color:#9ca3af;margin-top:.15rem;}
+  .stat-bubble .label{font-family:'Playfair Display',serif;font-size:.78rem;font-weight:500;color:var(--muted);letter-spacing:.22em;text-transform:uppercase;margin-top:.55rem;}
+  .stat-bubble .sub{font-family:'Playfair Display',serif;font-size:.85rem;color:#a8a29e;margin-top:.25rem;font-style:italic;}
 
   /* ── chart containers ── */
   .chart-wrap{position:relative;height:280px;width:100%;}
@@ -501,96 +513,81 @@ Chart.js and Google Fonts are loaded from CDN).
 
   /* ── table ── */
   .dino-table{width:100%;border-collapse:separate;border-spacing:0;font-size:.9rem;}
-  .dino-table thead tr{background:linear-gradient(90deg,var(--green-dark),var(--green));}
-  .dino-table thead th{color:#fff;font-weight:900;padding:.7rem 1rem;text-align:left;letter-spacing:.05em;}
-  .dino-table thead th:first-child{border-radius:.75rem 0 0 .75rem;}
-  .dino-table thead th:last-child{border-radius:0 .75rem .75rem 0;}
+  .dino-table thead tr{background:var(--green-dark);}
+  .dino-table thead th{color:#fefce8;font-family:'Playfair Display',serif;font-weight:700;padding:.7rem 1rem;text-align:left;letter-spacing:.04em;font-size:.85rem;}
+  .dino-table thead th:first-child{border-radius:.4rem 0 0 .4rem;}
+  .dino-table thead th:last-child{border-radius:0 .4rem .4rem 0;}
   .dino-table tbody tr{transition:background .15s;}
-  .dino-table tbody tr:hover{background:#f0fdf4;}
-  .dino-table tbody tr:nth-child(even){background:#fafafa;}
-  .dino-table tbody td{padding:.65rem 1rem;border-bottom:1px solid #e5e7eb;}
+  .dino-table tbody tr:hover{background:var(--green-light);}
+  .dino-table tbody tr:nth-child(even){background:#fafaf9;}
+  .dino-table tbody td{font-family:'Playfair Display',serif;font-size:.95rem;padding:.7rem 1rem;border-bottom:1px solid var(--rule);}
 
   /* ── win-rate bar ── */
-  .winbar{height:10px;border-radius:9999px;background:#e5e7eb;overflow:hidden;min-width:80px;}
+  .winbar{height:8px;border-radius:9999px;background:#e7e5e4;overflow:hidden;min-width:80px;}
   .winbar-fill{height:100%;border-radius:9999px;transition:width 1s cubic-bezier(.4,0,.2,1);
-    background:linear-gradient(90deg,#22c55e,#facc15);}
+    background:linear-gradient(90deg,var(--green),var(--yellow));}
 
   /* ── signal badge ── */
   .signal{
     display:inline-flex;align-items:center;gap:.4rem;
-    font-size:.8rem;font-weight:900;padding:.35rem .8rem;
-    border-radius:9999px;margin-top:1rem;border:2px solid transparent;
+    font-family:'Playfair Display',serif;font-style:italic;
+    font-size:.9rem;font-weight:500;padding:.45rem 1rem;
+    border-radius:.4rem;margin-top:1rem;border:1px solid transparent;
   }
-  .signal.ok{background:#dcfce7;color:#166534;border-color:#22c55e;}
-  .signal.warn{background:#fef3c7;color:#92400e;border-color:#facc15;}
-  .signal.alert{background:#fee2e2;color:#991b1b;border-color:#ef4444;}
+  .signal.ok{background:#f0fdf4;color:var(--green-dark);border-color:#86efac;}
+  .signal.warn{background:#fef3c7;color:var(--yellow-dark);border-color:#fcd34d;}
+  .signal.alert{background:#fee2e2;color:var(--red);border-color:#fca5a5;}
 
   /* ── dino type badge ── */
   .type-badge{
-    display:inline-block;font-size:.75rem;font-weight:900;
-    padding:.2rem .6rem;border-radius:9999px;letter-spacing:.05em;
+    display:inline-block;font-size:.7rem;font-weight:700;
+    padding:.22rem .6rem;border-radius:.3rem;letter-spacing:.06em;
   }
-  .type-Agile{background:#dcfce7;color:#166534;border:2px solid #22c55e;}
-  .type-Tank{background:#dbeafe;color:#1e40af;border:2px solid #3b82f6;}
-  .type-Speedy{background:#fef3c7;color:#92400e;border:2px solid #facc15;}
-  .type-Balanced{background:#f3e8ff;color:#6b21a8;border:2px solid #a855f7;}
-  .type-default{background:#f3f4f6;color:#374151;border:2px solid #9ca3af;}
+  .type-Agile{background:#f0fdf4;color:var(--green-dark);border:1px solid #86efac;}
+  .type-Tank{background:#eff6ff;color:#1e3a8a;border:1px solid #93c5fd;}
+  .type-Speedy{background:#fef3c7;color:var(--yellow-dark);border:1px solid #fcd34d;}
+  .type-Balanced{background:#f5f3ff;color:#6b21a8;border:1px solid #c4b5fd;}
+  .type-default{background:#f5f5f4;color:#44403c;border:1px solid #d6d3d1;}
 
   /* ── habitat matrix ── */
   .matrix-grid{display:grid;gap:.5rem;}
   .matrix-row{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;}
   .matrix-cell{
-    font-size:.78rem;font-weight:700;padding:.3rem .65rem;
-    border-radius:.75rem;border:2px solid;cursor:default;
+    font-family:'Playfair Display',serif;font-size:.88rem;font-weight:500;
+    padding:.4rem .8rem;border-radius:.35rem;border:1px solid;
     transition:transform .15s;
   }
-  .matrix-cell:hover{transform:scale(1.08) rotate(1deg);}
+  .matrix-cell strong{font-weight:700;}
+  .matrix-cell:hover{transform:translateY(-1px);}
 
-  /* ── traffic sparkline section ── */
-  .traffic-header{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;}
+  /* ── traffic KPIs ── */
+  .traffic-header{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.25rem;}
   .traffic-kpi{
-    background:linear-gradient(135deg,var(--green-dark),var(--green));
-    color:#fff;border-radius:1rem;padding:.8rem 1.2rem;flex:1;min-width:140px;
-    border:3px solid #22c55e;text-align:center;
+    background:var(--card);color:var(--green-dark);
+    border:1px solid var(--rule);border-left:4px solid var(--green-dark);
+    border-radius:.4rem;padding:1rem 1.25rem;flex:1;min-width:140px;
   }
-  .traffic-kpi .kv{font-family:'Fredoka One',cursive;font-size:1.8rem;}
-  .traffic-kpi .kl{font-size:.75rem;font-weight:700;opacity:.85;letter-spacing:.08em;text-transform:uppercase;}
+  .traffic-kpi .kv{font-family:'Playfair Display',serif;font-weight:700;font-size:1.9rem;line-height:1.1;}
+  .traffic-kpi .kl{font-family:'Playfair Display',serif;font-size:.78rem;font-weight:500;color:var(--muted);letter-spacing:.22em;text-transform:uppercase;margin-top:.35rem;}
 
   /* ── footer ── */
   footer{
-    position:relative;z-index:1;text-align:center;padding:2rem;
-    font-size:.8rem;color:#9ca3af;font-weight:700;letter-spacing:.05em;
-  }
-
-  /* ── wiggle on hover for emoji icons ── */
-  .wiggle:hover{animation:wiggle .4s ease;}
-  @keyframes wiggle{0%,100%{transform:rotate(0);}25%{transform:rotate(-12deg);}75%{transform:rotate(12deg);}}
-
-  /* ── confetti burst (CSS only, fires on load) ── */
-  .confetti-wrap{position:fixed;top:0;left:50%;transform:translateX(-50%);pointer-events:none;z-index:999;}
-  .confetti-piece{
-    position:absolute;width:10px;height:10px;border-radius:2px;
-    animation:confettiFall 2.5s ease-in forwards;
-  }
-  @keyframes confettiFall{
-    0%{transform:translateY(0) rotate(0deg);opacity:1;}
-    100%{transform:translateY(100vh) rotate(720deg);opacity:0;}
+    position:relative;z-index:1;text-align:center;padding:2rem 1rem;
+    font-family:'Playfair Display',serif;font-style:italic;
+    font-size:.85rem;color:var(--muted);
+    border-top:1px solid var(--rule);margin-top:2rem;
   }
 </style>
 </head>
 <body>
 
-<!-- floating dino background -->
-<div class="dino-bg" id="dinoBg"></div>
-
-<!-- confetti -->
-<div class="confetti-wrap" id="confetti"></div>
-
 <!-- ══ HEADER ══ -->
 <header>
-  <div class="header-title">🦕 DinoQuest2 Insights</div>
-  <div class="header-sub">Live Game Analytics Dashboard</div>
-  <div class="header-badge">📅 Report generated: /* REPORT_TIME */</div>
+  <div class="header-eyebrow">Field Journal</div>
+  <div class="header-title">DinoQuest Insights</div>
+  <div class="header-rule"></div>
+  <div class="header-sub">Game Analytics Report</div>
+  <div class="header-badge">Updated /* REPORT_TIME */</div>
 </header>
 
 <main>
@@ -600,10 +597,10 @@ Chart.js and Google Fonts are loaded from CDN).
 
   <div class="traffic-header">
     <div class="traffic-kpi"><div class="kv">/* TOTAL_REQUESTS */</div><div class="kl">Total Requests</div></div>
-    <div class="traffic-kpi" style="background:linear-gradient(135deg,#ef4444,#f97316);border-color:#f97316;">
+    <div class="traffic-kpi" style="border-left-color:var(--red);color:var(--red);">
       <div class="kv">/* TOTAL_ERRORS */</div><div class="kl">Server Errors</div>
     </div>
-    <div class="traffic-kpi" style="background:linear-gradient(135deg,#2563eb,#7c3aed);border-color:#7c3aed;">
+    <div class="traffic-kpi" style="border-left-color:var(--yellow-dark);color:var(--yellow-dark);">
       <div class="kv">/* AVG_LATENCY */ms</div><div class="kl">Avg Latency</div>
     </div>
   </div>
@@ -621,17 +618,17 @@ Chart.js and Google Fonts are loaded from CDN).
     <div class="chart-wrap"><canvas id="winRateChart"></canvas></div>
   </div>
 
-  <!-- ══ SECTION 3: COINS ══ -->
-  <div class="section-title">🪙 Coins per Outcome <span class="pill">PROGRESSION</span></div>
+  <!-- ══ SECTION 3: TREATS ══ -->
+  <div class="section-title">🍖🌿 Treats per Outcome <span class="pill">PROGRESSION</span></div>
   <div class="cards-grid">
-    <div class="card stat-bubble" style="border-color:#22c55e;">
-      <div class="value" style="font-size:3rem;">/* WIN_AVG_COINS */</div>
-      <div class="label">Avg Coins on WIN</div>
+    <div class="card stat-bubble">
+      <div class="value">/* WIN_AVG_COINS */</div>
+      <div class="label">Avg Treats on WIN</div>
       <div class="sub">/* WIN_GAMES */ games</div>
     </div>
-    <div class="card stat-bubble" style="border-color:#ef4444;">
-      <div class="value" style="background:linear-gradient(135deg,#ef4444,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:3rem;">/* LOSS_AVG_COINS */</div>
-      <div class="label">Avg Coins on LOSS</div>
+    <div class="card stat-bubble">
+      <div class="value" style="color:var(--red);">/* LOSS_AVG_COINS */</div>
+      <div class="label">Avg Treats on LOSS</div>
       <div class="sub">/* LOSS_GAMES */ games</div>
     </div>
     <div class="card chart-card">
@@ -645,7 +642,7 @@ Chart.js and Google Fonts are loaded from CDN).
   <div class="card" style="overflow-x:auto;">
     <table class="dino-table" id="reuseTable">
       <thead><tr>
-        <th>🦕 Dino Name</th><th>Type</th>
+        <th>Dino Name</th><th>Type</th>
         <th>Total Starts</th><th>Reuse</th><th>Fresh</th><th>Reuse Rate</th>
       </tr></thead>
       <tbody id="reuseBody"></tbody>
@@ -660,7 +657,7 @@ Chart.js and Google Fonts are loaded from CDN).
 
 </main>
 
-<footer>🦖 DinoQuest2 Analytics · Generated by Claude Code · /* REPORT_TIME */</footer>
+<footer>DinoQuest Analytics &middot; Generated by Claude Code &middot; /* REPORT_TIME */</footer>
 
 <script>
 /* ══════════════════════════════════════════════
@@ -683,41 +680,13 @@ const HABITAT = /* HABITAT_JSON */;
 // e.g. [{ habitat:"forest", diet:"herbivore", dino_type:"Agile", occurrences:8 }, ...]
 
 /* ══════════════════════════════════════════════
-   FLOATING DINO BACKGROUND
-══════════════════════════════════════════════ */
-const DINOS = ['🦕','🦖','🥚','🌿','🏔️','🌋','⚡','🦴','🍖','💫'];
-const bg = document.getElementById('dinoBg');
-for(let i=0;i<22;i++){
-  const s = document.createElement('span');
-  s.textContent = DINOS[Math.floor(Math.random()*DINOS.length)];
-  s.style.left = Math.random()*100+'%';
-  s.style.animationDuration = (8+Math.random()*14)+'s';
-  s.style.animationDelay = (Math.random()*12)+'s';
-  s.style.fontSize = (1.5+Math.random()*2.5)+'rem';
-  bg.appendChild(s);
-}
-
-/* ══════════════════════════════════════════════
-   CONFETTI BURST
-══════════════════════════════════════════════ */
-const CONFETTI_COLORS = ['#16a34a','#facc15','#f97316','#ef4444','#a855f7','#2563eb','#ec4899'];
-const cf = document.getElementById('confetti');
-for(let i=0;i<60;i++){
-  const p = document.createElement('div');
-  p.className = 'confetti-piece';
-  p.style.background = CONFETTI_COLORS[Math.floor(Math.random()*CONFETTI_COLORS.length)];
-  p.style.left = (Math.random()*300-150)+'px';
-  p.style.animationDelay = (Math.random()*1.5)+'s';
-  p.style.animationDuration = (2+Math.random()*1.5)+'s';
-  p.style.transform = `rotate(${Math.random()*360}deg)`;
-  cf.appendChild(p);
-}
-
-/* ══════════════════════════════════════════════
    CHART DEFAULTS
 ══════════════════════════════════════════════ */
-Chart.defaults.font.family = "'Nunito', sans-serif";
-Chart.defaults.font.weight = '700';
+Chart.defaults.font.family = "'Playfair Display', serif";
+Chart.defaults.font.weight = '500';
+Chart.defaults.font.size = 13;
+Chart.defaults.color = '#292524';
+Chart.defaults.borderColor = 'rgba(0,0,0,.06)';
 
 /* ══════════════════════════════════════════════
    TRAFFIC CHART
@@ -732,20 +701,20 @@ if(TRAFFIC && TRAFFIC.length){
     data:{
       labels,
       datasets:[
-        { label:'Requests', data:reqs, backgroundColor:'rgba(22,163,74,.7)', borderColor:'#16a34a', borderWidth:2, borderRadius:6, yAxisID:'y' },
-        { label:'Server Errors', data:errs, backgroundColor:'rgba(239,68,68,.7)', borderColor:'#ef4444', borderWidth:2, borderRadius:6, yAxisID:'y' },
-        { label:'Latency (ms)', data:lat, type:'line', borderColor:'#facc15', backgroundColor:'rgba(250,204,21,.15)', borderWidth:3, pointRadius:4, pointHoverRadius:7, tension:.4, yAxisID:'y1' }
+        { label:'Requests', data:reqs, backgroundColor:'rgba(21,128,61,.65)', borderColor:'#15803d', borderWidth:1.5, borderRadius:3, yAxisID:'y' },
+        { label:'Server Errors', data:errs, backgroundColor:'rgba(185,28,28,.65)', borderColor:'#b91c1c', borderWidth:1.5, borderRadius:3, yAxisID:'y' },
+        { label:'Latency (ms)', data:lat, type:'line', borderColor:'#b45309', backgroundColor:'rgba(180,83,9,.10)', borderWidth:2, pointRadius:3, pointHoverRadius:6, tension:.35, yAxisID:'y1' }
       ]
     },
     options:{
       responsive:true,maintainAspectRatio:false,
       interaction:{mode:'index',intersect:false},
-      plugins:{legend:{labels:{color:'#374151',padding:16}},tooltip:{backgroundColor:'#166534',titleColor:'#facc15',bodyColor:'#fff',cornerRadius:10,padding:10}},
+      plugins:{legend:{labels:{color:'#292524',padding:16}},tooltip:{backgroundColor:'#14532d',titleColor:'#fde68a',bodyColor:'#fefce8',cornerRadius:6,padding:10}},
       scales:{
-        y:{beginAtZero:true,grid:{color:'rgba(0,0,0,.06)'},ticks:{color:'#6b7280'}},
-        y1:{position:'right',beginAtZero:true,grid:{display:false},ticks:{color:'#eab308'}}
+        y:{beginAtZero:true,grid:{color:'rgba(0,0,0,.05)'},ticks:{color:'#78716c'}},
+        y1:{position:'right',beginAtZero:true,grid:{display:false},ticks:{color:'#b45309'}}
       },
-      animation:{duration:1200,easing:'easeOutBounce'}
+      animation:{duration:1000,easing:'easeOutQuart'}
     }
   });
 }
@@ -753,8 +722,8 @@ if(TRAFFIC && TRAFFIC.length){
 /* ══════════════════════════════════════════════
    WIN RATE CARDS + CHART
 ══════════════════════════════════════════════ */
-const TYPE_COLORS = { Agile:'#22c55e', Tank:'#3b82f6', Speedy:'#facc15', Balanced:'#a855f7' };
-function typeColor(t){ return TYPE_COLORS[t] || '#9ca3af'; }
+const TYPE_COLORS = { Agile:'#15803d', Tank:'#1e40af', Speedy:'#d97706', Balanced:'#7c3aed' };
+function typeColor(t){ return TYPE_COLORS[t] || '#78716c'; }
 
 if(WIN_RATE && WIN_RATE.length){
   const cardsEl = document.getElementById('winRateCards');
@@ -766,11 +735,11 @@ if(WIN_RATE && WIN_RATE.length){
     card.style.borderColor = typeColor(r.dino_type);
     card.style.animationDelay = (i*0.12)+'s';
     card.innerHTML = `
-      <div style="font-size:2.5rem;margin-bottom:.3rem" class="wiggle">${{Agile:'⚡',Tank:'🛡️',Speedy:'💨',Balanced:'⚖️'}[r.dino_type]||'🦕'}</div>
+      <div style="font-size:2rem;margin-bottom:.4rem;opacity:.7;">${{Agile:'⚡',Tank:'🛡️',Speedy:'💨',Balanced:'⚖️'}[r.dino_type]||'◆'}</div>
       <div class="value" style="font-size:2.4rem;">${pct}%</div>
       <div class="label">${r.dino_type} Win Rate</div>
       <div class="sub">${r.total_games} games · avg score ${r.avg_score}</div>
-      ${hot?'<div class="signal alert">🚨 Needs rebalance</div>':'<div class="signal ok">✅ Balanced</div>'}
+      ${hot?'<div class="signal alert">⚠ Needs rebalance</div>':'<div class="signal ok">✓ Balanced</div>'}
     `;
     cardsEl.appendChild(card);
   });
@@ -780,15 +749,15 @@ if(WIN_RATE && WIN_RATE.length){
     data:{
       labels:WIN_RATE.map(r=>r.dino_type),
       datasets:[
-        { label:'Win Rate %', data:WIN_RATE.map(r=>r.win_rate_pct), backgroundColor:'rgba(22,163,74,.25)', borderColor:'#16a34a', borderWidth:3, pointBackgroundColor:WIN_RATE.map(r=>typeColor(r.dino_type)), pointRadius:6 },
-        { label:'Avg Score/10', data:WIN_RATE.map(r=>(r.avg_score/10).toFixed(1)), backgroundColor:'rgba(250,204,21,.2)', borderColor:'#facc15', borderWidth:2, pointBackgroundColor:'#facc15', pointRadius:5 }
+        { label:'Win Rate %', data:WIN_RATE.map(r=>r.win_rate_pct), backgroundColor:'rgba(21,128,61,.20)', borderColor:'#15803d', borderWidth:2, pointBackgroundColor:WIN_RATE.map(r=>typeColor(r.dino_type)), pointRadius:5 },
+        { label:'Avg Score/10', data:WIN_RATE.map(r=>(r.avg_score/10).toFixed(1)), backgroundColor:'rgba(180,83,9,.15)', borderColor:'#b45309', borderWidth:1.5, pointBackgroundColor:'#b45309', pointRadius:4 }
       ]
     },
     options:{
       responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{labels:{color:'#374151'}},tooltip:{backgroundColor:'#166534',titleColor:'#facc15',bodyColor:'#fff',cornerRadius:10}},
-      scales:{r:{beginAtZero:true,max:100,grid:{color:'rgba(0,0,0,.08)'},pointLabels:{color:'#374151',font:{size:14,weight:'bold'}},ticks:{backdropColor:'transparent',color:'#9ca3af'}}},
-      animation:{duration:1400,easing:'easeOutElastic'}
+      plugins:{legend:{labels:{color:'#292524'}},tooltip:{backgroundColor:'#14532d',titleColor:'#fde68a',bodyColor:'#fefce8',cornerRadius:6}},
+      scales:{r:{beginAtZero:true,max:100,grid:{color:'rgba(0,0,0,.06)'},pointLabels:{color:'#292524',font:{size:14,weight:'700'}},ticks:{backdropColor:'transparent',color:'#a8a29e'}}},
+      animation:{duration:1100,easing:'easeOutQuart'}
     }
   });
 }
@@ -802,21 +771,21 @@ if(COINS && COINS.length){
   new Chart(document.getElementById('coinsChart'),{
     type:'doughnut',
     data:{
-      labels:['Win Avg Coins','Loss Avg Coins'],
-      datasets:[{ data:[winRow.avg_coins||0, lossRow.avg_coins||0], backgroundColor:['#22c55e','#ef4444'], borderColor:['#166534','#991b1b'], borderWidth:3, hoverOffset:10 }]
+      labels:['Win Avg Treats','Loss Avg Treats'],
+      datasets:[{ data:[winRow.avg_coins||0, lossRow.avg_coins||0], backgroundColor:['#15803d','#b91c1c'], borderColor:['#14532d','#7f1d1d'], borderWidth:2, hoverOffset:8 }]
     },
     options:{
       responsive:true,maintainAspectRatio:false,cutout:'65%',
-      plugins:{legend:{labels:{color:'#374151',padding:12}},tooltip:{backgroundColor:'#166534',titleColor:'#facc15',bodyColor:'#fff',cornerRadius:10}},
-      animation:{animateRotate:true,duration:1200,easing:'easeOutBounce'}
+      plugins:{legend:{labels:{color:'#292524',padding:12}},tooltip:{backgroundColor:'#14532d',titleColor:'#fde68a',bodyColor:'#fefce8',cornerRadius:6}},
+      animation:{animateRotate:true,duration:1000,easing:'easeOutQuart'}
     }
   });
   const winCoins = winRow.avg_coins||0;
   const sig = document.getElementById('coinSignal');
   if(winCoins<=3){
-    sig.innerHTML='<div class="signal warn" style="font-size:.95rem;padding:.6rem 1.2rem;">⚠️ Win avg coins ≤ 3 — consider a streak bonus to boost retention</div>';
+    sig.innerHTML='<div class="signal warn" style="font-size:.9rem;padding:.55rem 1rem;">⚠ Win avg treats ≤ 3 — consider a streak bonus to boost retention</div>';
   } else {
-    sig.innerHTML='<div class="signal ok" style="font-size:.95rem;padding:.6rem 1.2rem;">✅ Coin yield looks healthy — players have progression incentive</div>';
+    sig.innerHTML='<div class="signal ok" style="font-size:.9rem;padding:.55rem 1rem;">✓ Treat yield looks healthy — players have progression incentive</div>';
   }
 }
 
@@ -833,12 +802,12 @@ if(REUSE && REUSE.length){
       <td><strong>${r.dino_name}</strong></td>
       <td><span class="type-badge ${typeCls}">${r.dino_type||'—'}</span></td>
       <td>${r.total_starts}</td>
-      <td><strong style="color:#16a34a;">${r.reuse_starts}</strong></td>
+      <td><strong style="color:var(--green-dark);">${r.reuse_starts}</strong></td>
       <td>${r.fresh_starts}</td>
       <td>
         <div style="display:flex;align-items:center;gap:.5rem;">
           <div class="winbar"><div class="winbar-fill" style="width:0%" data-pct="${reuseRate}"></div></div>
-          <span style="font-weight:900;color:#374151;">${reuseRate}%</span>
+          <span style="font-family:'Playfair Display',serif;font-weight:700;color:var(--ink);">${reuseRate}%</span>
         </div>
       </td>
     `;
@@ -855,8 +824,8 @@ if(REUSE && REUSE.length){
    HABITAT MATRIX
 ══════════════════════════════════════════════ */
 if(HABITAT && HABITAT.length){
-  const HABITAT_COLORS={forest:'#166534',desert:'#92400e',swamp:'#065f46',beach:'#0e7490'};
-  const DIET_COLORS={herbivore:'#16a34a',carnivore:'#dc2626',omnivore:'#d97706'};
+  const HABITAT_COLORS={forest:'#14532d',desert:'#b45309',swamp:'#065f46',beach:'#0e7490',tundra:'#475569',volcano:'#b91c1c',ocean:'#1e40af'};
+  const DIET_COLORS={herbivore:'#15803d',carnivore:'#b91c1c',omnivore:'#b45309'};
   const matrix = document.getElementById('habitatMatrix');
   const grouped={};
   HABITAT.forEach(r=>{
@@ -872,7 +841,7 @@ if(HABITAT && HABITAT.length){
     const row=document.createElement('div');
     row.className='matrix-row';
     const hLabel=document.createElement('div');
-    hLabel.style.cssText=`font-weight:900;font-size:.9rem;min-width:80px;color:${HABITAT_COLORS[h]||'#374151'};`;
+    hLabel.style.cssText=`font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;min-width:90px;color:${HABITAT_COLORS[h]||'var(--green-dark)'};`;
     hLabel.textContent='🗺️ '+h;
     row.appendChild(hLabel);
     diets.forEach(d=>{
@@ -885,8 +854,8 @@ if(HABITAT && HABITAT.length){
       const bg=DIET_COLORS[d]||'#6b7280';
       cell.style.cssText=`background:${bg}18;color:${bg};border-color:${bg};`;
       const typeSummary=entry.types.map(t=>`${t.type}(${t.n})`).join(', ');
-      cell.innerHTML=`<span>${d}</span> → <strong>${typeSummary}</strong>${allSameType?' 🎯':''}`;
-      cell.title=allSameType?'Deterministic! Great for type preview UI':'Multiple outcomes';
+      cell.innerHTML=`<span>${d}</span> → <strong>${typeSummary}</strong>${allSameType?' <span style="color:var(--yellow-dark);font-weight:700;">★</span>':''}`;
+      cell.title=allSameType?'Deterministic — good candidate for type preview UI':'Multiple outcomes';
       row.appendChild(cell);
     });
     grid.appendChild(row);
@@ -897,7 +866,7 @@ if(HABITAT && HABITAT.length){
     const sig=document.createElement('div');
     sig.className='signal ok';
     sig.style.marginTop='1rem';
-    sig.innerHTML=`🎯 ${deterministicCombos.length} habitat+diet combo(s) are 100% deterministic — show type preview before confirm!`;
+    sig.innerHTML=`★ ${deterministicCombos.length} habitat + diet combo(s) are 100% deterministic — show type preview before confirm`;
     matrix.appendChild(sig);
   }
 }
